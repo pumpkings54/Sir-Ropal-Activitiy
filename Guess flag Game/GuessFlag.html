@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Flag Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Style CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+        }
+
+        body {
+            background-color: #f2f2f2; /* Light gray background */
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the main container takes at least the full viewport height */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 40px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+            border-radius: 20px;
+        }
+
+        .flag-container {
+            margin: 20px 0;
+        }
+
+        #flag-img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* Adjust as needed */
+            background-color: #007bff; /* Blue header background */
+            color: #fff; /* White text color */
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000; /* Ensure the header stays on top */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Dark gray text color */
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            margin: 10px;
+            width: 92%;
+            background-color: #f9f9f9; /* Light gray input background */
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            border: 2px solid #ddd; /* Light gray border */
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa; /* Light gray placeholder text color */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4caf50; /* Green button background */
+            color: #fff; /* White text color */
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth hover transition */
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        p#result {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333; /* Dark gray text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Guess The Flag</h1>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <h1>Guess the Flag Game</h1>
+            <div class="flag-container">
+                <img id="flag-img" src="" alt="Flag Image">
+            </div>
+            <input type="text" id="guess-input" placeholder="Enter the country name...">
+            <button id="submit-btn">Submit</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <!-- Script JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const flagImg = document.getElementById('flag-img');
+            const guessInput = document.getElementById('guess-input');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultMsg = document.getElementById('result');
+
+            // Fetch a random country flag
+            function fetchRandomFlag() {
+                fetch('https://restcountries.com/v3.1/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        const randomIndex = Math.floor(Math.random() * data.length);
+                        const flagUrl = data[randomIndex].flags.png;
+                        const countryName = data[randomIndex].name.common;
+                        flagImg.src = flagUrl;
+                        flagImg.dataset.country = countryName;
+                    })
+                    .catch(error => console.log('Error fetching data: ', error));
+            }
+
+            // Check the user's guess
+            function checkGuess() {
+                const userGuess = guessInput.value.trim().toLowerCase();
+                const correctAnswer = flagImg.dataset.country.toLowerCase();
+
+                console.log(userGuess, correctAnswer);
+
+                if (userGuess === correctAnswer) {
+                    resultMsg.textContent = 'Correct!';
+                    resultMsg.style.color = '#4caf50'; /* Green text color */
+                } else {
+                    resultMsg.textContent = 'Incorrect. Try again.';
+                    resultMsg.style.color = '#f44336'; /* Red text color */
+                }
+
+                // Clear the input after checking the guess
+                guessInput.value = '';
+
+                // Fetch a new random flag for the next round
+                fetchRandomFlag();
+            }
+
+            // Event listener for the submit button
+            submitBtn.addEventListener('click', checkGuess);
+
+            // Fetch a random flag when the page loads
+            fetchRandomFlag();
+        });
+    </script>
+</body>
+</html>

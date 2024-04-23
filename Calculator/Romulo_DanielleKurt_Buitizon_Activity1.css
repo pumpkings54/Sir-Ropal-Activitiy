@@ -1,0 +1,58 @@
+.calculator {
+  width: 400px; /* Increased width to make it bigger */
+  margin: 50px auto;
+  border: 2px solid #3498db; /* Changed border color */
+  padding: 20px; /* Increased padding for better spacing */
+  text-align: center;
+  background-color: #f2f2f2; /* Added background color */
+  border-radius: 10px; /* Added border radius for rounded corners */
+}
+
+.result {
+  width: calc(100% - 20px); /* Adjusted width to account for padding */
+  margin-bottom: 15px;
+  font-size: 20px;
+  padding: 10px; /* Added padding to all sides */
+  box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; /* Increased gap between buttons */
+}
+
+.buttons button {
+  padding: 15px; /* Increased padding for bigger buttons */
+  font-size: 20px; /* Increased font size */
+  cursor: pointer;
+  background-color: #3498db; /* Changed button background color */
+  color: #fff; /* Changed button text color */
+  border: none; /* Removed button border */
+  border-radius: 5px; /* Added border radius for rounded corners */
+}
+.history-container{
+  width: 400px;
+  margin: 0 auto;
+  border: 2px solid #3498db;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.history {
+  margin-top: 30px; /* Increased margin-top for better spacing */
+  text-align: left;
+  font-size: 16px; /* Increased font size for history */
+  line-height: 1.5; /* Increased line height for better readability */
+}
+.history-divider {
+  margin-top: 10px; /* Adjust the margin to position the divider */
+  border: none; /* Remove default border */
+  border-top: 1px solid #ccc; /* Add top border */
+}
+.computation-divider {
+  margin: 10px 0; /* Adjust margin as needed */
+  border: none; /* Remove default border */
+  border-top: 1px solid #ccc; /* Add top border */
+}

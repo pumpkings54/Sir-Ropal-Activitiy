@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="Romulo_DanielleKurt_Buitizon_Activity1.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="result" id="result" readonly>
+    <div class="buttons">
+      <button onclick="clearResult()">Clear</button>
+      <button onclick="deleteLast()">Delete</button>
+      <button onclick="addToResult('%')">%</button>
+      <button onclick="addToResult('**')">^</button>
+      <button onclick="addToResult('7')">7</button>
+      <button onclick="addToResult('8')">8</button>
+      <button onclick="addToResult('9')">9</button>
+      <button onclick="addToResult('/')">/</button>
+      <button onclick="addToResult('4')">4</button>
+      <button onclick="addToResult('5')">5</button>
+      <button onclick="addToResult('6')">6</button>
+      <button onclick="addToResult('*')">*</button>
+      <button onclick="addToResult('1')">1</button>
+      <button onclick="addToResult('2')">2</button>
+      <button onclick="addToResult('3')">3</button>
+      <button onclick="addToResult('-')">-</button>
+      <button onclick="addToResult('0')">0</button>
+      <button onclick="addToResult('.')">.</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="addToResult('+')">+</button>
+      
+    </div>
+  </div>
+  <div class="history-container">
+    <h2 class="history-title">History</h2>
+    <hr class="history-divider">
+    <div class="history" id="history">
+    </div>
+  </div>
+  <script src="Romulo_DanielleKurt_Buitizon_Activity1.js"></script>
+</body>
+</html>
