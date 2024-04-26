@@ -1,7 +1,7 @@
 let expression = '';
 let history = document.getElementById('history');
 let resultInput = document.getElementById('result');
-let calculationHistory = []; // Declare calculationHistory array
+let calculationHistory = []; 
 
 function addToResult(value) {
   expression += value;
@@ -25,7 +25,7 @@ function calculateResult() {
 
 function clearResult() {
   if (expression !== '') {
-    history.innerHTML += '<hr class="computation-divider">'; // Insert divider if expression is not empty
+    history.innerHTML += '<hr class="computation-divider">'; 
   }
   expression = '';
   resultInput.value = '';
